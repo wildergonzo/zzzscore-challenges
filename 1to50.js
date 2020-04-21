@@ -8,7 +8,8 @@ const {Builder, By, Key, until} = require('selenium-webdriver');
     for(let i = 1; i <= 50; i++) {
       await driver.findElement(By.xpath(`//div[text()=${i}]`)).click();
     }
-    await driver.sleep(1000);
+    let score = await driver.wait(until.elementLocated(By.css('div>.level')),1000).getText();
+    console.log(`score: ${score}`);
   } finally {
     await driver.quit();
   }
